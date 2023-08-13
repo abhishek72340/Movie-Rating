@@ -7,15 +7,16 @@ import { MovieDetail } from "./components/MovieDetail";
 import { Starred } from "./components/Starred";
 import { Link } from "react-router-dom";
 import { useMovies } from "./context/MoviesProvider";
-
 export default function App() {
   const { state, dispatch } = useMovies();
 
   return (
     <>
-      <div className="App">
+    <div className="App">
         <div>
-          <div className="navbar">
+        
+        <div className="navbar">
+
             <Link to="/">
               <h2>IMDB</h2>
             </Link>
@@ -46,6 +47,7 @@ export default function App() {
             </nav>
           </div>
           <div style={{ width: "100%" }}>
+
             <Routes>
               <Route path="/" element={<Movies />} />
               <Route path="/watchlist" element={<WatchList />} />
@@ -54,6 +56,7 @@ export default function App() {
             </Routes>
           </div>
         </div>
+
       </div>
     </>
   );
