@@ -15,6 +15,22 @@ const uniqueKeys = new Set();
     return false;
   });
 
+  const uniqueDataRating = movies.filter((item) => {
+    if (!uniqueKeys.has(item.rating)) {
+      uniqueKeys.add(item.rating);
+      return true;
+    }
+    return false;
+  });
+
+  const uniqueDataGenre = movies.filter((item) => {
+    if (!uniqueKeys.has(item.genre.map(ite=>ite))) {
+      uniqueKeys.add(item.genre.map(it=>it));
+      return true;
+    }
+    return false;
+  });
+
 export const Movies = () => {
   const { state, dispatch } = useMovies();
 
@@ -25,15 +41,21 @@ export const Movies = () => {
 <h2>Movies</h2>
 <select>
 <option>all genere</option>
+{uniqueDataGenre.map(({genre,id})=>
+<option key={id} value='genre'>{genre}</option>
+  )}
 </select>
 <select>
 <option>release year</option>
 {uniqueDataArray.map(({year,id})=>
-  <option key={id}>{year}</option>
+  <option key={id} value='year'>{year}</option>
   )}
 </select>
 <select>
 <option>rating</option>
+{uniqueDataRating.map(({rating,id})=>
+<option key={id} value='rating'>{rating}</option>
+)}
 </select>
 <button style={{backgroundColor:'#333333',color:'white',width:'7rem',border:'1px solid #333333'}} >Add a Movie</button>
 </div>
